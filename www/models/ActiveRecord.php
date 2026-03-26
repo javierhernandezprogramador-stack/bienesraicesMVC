@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use mysqli_sql_exception;
+
 class ActiveRecord
 {
     //Base de datos
@@ -25,9 +27,9 @@ class ActiveRecord
     public function guardar()
     {
         if (isset($this->id)) { //si existe un id es porque estamos actualizando
-            $this->actualizar();
+            return $this->actualizar();
         } else {
-            $this->crear();
+            return $this->crear();
         }
     }
 
@@ -49,9 +51,7 @@ class ActiveRecord
 
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /admin?resultado=2');
-        }
+        return $resultado;
     }
 
     public function crear()
@@ -71,19 +71,21 @@ class ActiveRecord
 
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /admin?resultado=1');
-        }
+        return $resultado;
     }
 
     //Eliminar un registro
     public function eliminar()
     {
-        $query = "DELETE FROM " . static::$tabla . " WHERE id ='" . self::$db->escape_string($this->id) . "' LIMIT 1";
-        $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /admin?resultado=3');
+        try {
+
+            $query = "DELETE FROM " . static::$tabla . " WHERE id ='" . self::$db->escape_string($this->id) . "' LIMIT 1";
+            $resultado = self::$db->query($query);
+
+            return $resultado;
+        } catch (mysqli_sql_exception $e) {
+            return false;
         }
     }
 

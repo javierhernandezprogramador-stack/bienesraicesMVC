@@ -15,7 +15,7 @@ class PropiedadController
         $propiedades = Propiedad::all();
         $resultado = $_GET['resultado'] ?? null;
 
-        $router->render('propiedades/admin', [
+        $router->render('propiedades/index', [
             'propiedades' => $propiedades,
             'resultado' => $resultado
         ]);
@@ -54,7 +54,11 @@ class PropiedadController
                 //Guardar la imagen en el servidor
                 $imagen->save(CARPETA_IMAGENES . $nombreImagen);
 
-                $propiedad->guardar();
+                $resultado = $propiedad->guardar();
+
+                if ($resultado) {
+                    header('Location: /propiedades?resultado=1');
+                }
             } else {
                 $propiedad->imagen = '';
             }
@@ -69,7 +73,7 @@ class PropiedadController
 
     public static function actualizar(Router $router)
     {
-        $id = validarORedireccionar('/admin');
+        $id = validarORedireccionar('/propiedades');
 
         $propiedad = Propiedad::find($id);
         $errores = Propiedad::getErrores();
@@ -98,7 +102,11 @@ class PropiedadController
 
             //Revisar que el arreglo de errores este vacio
             if (empty($errores)) {
-                $propiedad->guardar();
+                $resultado = $propiedad->guardar();
+
+                if ($resultado) {
+                    header('Location: /propiedades?resultado=2');
+                }
             }
         }
 
@@ -121,7 +129,11 @@ class PropiedadController
 
                 if (validarTipoContenido($tipo)) {
                     $propiedad = Propiedad::find($id);
-                    $propiedad->eliminar();
+                    $resultado = $propiedad->eliminar();
+
+                    if ($resultado) {
+                        header('Location: /propiedades?resultado=3');
+                    }
                 }
             }
         }
