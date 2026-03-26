@@ -1,7 +1,7 @@
 <?php
 define('TEMPLATES_URL', __DIR__ . '/templates/');
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
-define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/public/imagenes/');
+define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/imagenes/');
 
 
 function incluirTemplate(string $nombre, $urlBase, bool $inicio = false)

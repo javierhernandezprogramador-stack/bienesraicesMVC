@@ -10,7 +10,7 @@
     <?php endforeach ?>
 
     <form class="formulario" method="POST" enctype="multipart/form-data">
-        <?php include __DIR__ . '/formulario.php'; ?>
+        <?php include 'formulario.php'; ?>
         <input type="submit" value="Actualizar Propiedad" class="boton-verde">
     </form>
 </main>

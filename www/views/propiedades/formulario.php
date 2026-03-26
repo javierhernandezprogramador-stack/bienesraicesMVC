@@ -23,7 +23,7 @@
 
     <?php if ($propiedad->imagen): ?>
         <p><?php echo $propiedad->imagen; ?></p>
-        <img src="/public/imagenes/<?php echo $propiedad->imagen; ?>" alt="Imagen de la propiedad" class="imagen-small">
+        <img src="/imagenes/<?php echo $propiedad->imagen; ?>" alt="Imagen de la propiedad" class="imagen-small">
     <?php endif; ?>
 
     <label for="descripcion">Descripción:</label>

@@ -1,5 +1,19 @@
 FROM php:8.2-apache
 
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+
+#Configuración para poner a public como directorio principal
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+
+#permisos de apache
+RUN printf '<Directory /var/www/html/public>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+    </Directory>\n' >> /etc/apache2/apache2.conf
+
+#asegurar index
+RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
+
 # Activar modo rewrite
 RUN a2enmod rewrite
 

@@ -35,7 +35,7 @@
                 <tr>
                     <td><?php echo $vendedor->id; ?></td>
                     <td><?php echo $vendedor->nombre . ' ' . $vendedor->apellido; ?></td>
-                    <td><img src="/public/imagenes/<?php echo $vendedor->imagen; ?>" alt="Imagen tabla" class="imagen-tabla"></td>
+                    <td><img src="/imagenes/<?php echo $vendedor->imagen; ?>" alt="Imagen tabla" class="imagen-tabla"></td>
                     <td><?php echo $vendedor->email; ?></td>
                     <td>
                         <form method="POST" class="w-100" action="/vendedores/eliminar">

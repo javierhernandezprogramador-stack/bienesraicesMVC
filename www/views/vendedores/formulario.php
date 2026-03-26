@@ -42,6 +42,6 @@
         value="<?php echo s($vendedor->imagen); ?>">
 
     <?php if ($vendedor->imagen): ?>
-        <img src="/public/imagenes/<?php echo s($vendedor->imagen); ?>" class="imagen-small" alt="Imagen del vendedor">
+        <img src="/imagenes/<?php echo s($vendedor->imagen); ?>" class="imagen-small" alt="Imagen del vendedor">
     <?php endif; ?>
 </fieldset>

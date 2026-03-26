@@ -11,7 +11,7 @@
 
     <form method="POST" class="formulario" enctype="multipart/form-data">
 
-        <?php include __DIR__ . "/formulario.php"; ?>
+        <?php include "formulario.php"; ?>
 
         <input type="submit" value="Registrar Vendedor/a" class="boton-verde">
     </form>
