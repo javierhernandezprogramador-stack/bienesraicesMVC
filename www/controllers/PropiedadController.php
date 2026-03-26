@@ -57,7 +57,7 @@ class PropiedadController
                 $resultado = $propiedad->guardar();
 
                 if ($resultado) {
-                    header('Location: /propiedades?resultado=1');
+                    header('Location: /propiedades/admin?resultado=1');
                 }
             } else {
                 $propiedad->imagen = '';
@@ -73,7 +73,7 @@ class PropiedadController
 
     public static function actualizar(Router $router)
     {
-        $id = validarORedireccionar('/propiedades');
+        $id = validarORedireccionar('/propiedades/admin');
 
         $propiedad = Propiedad::find($id);
         $errores = Propiedad::getErrores();
@@ -105,7 +105,7 @@ class PropiedadController
                 $resultado = $propiedad->guardar();
 
                 if ($resultado) {
-                    header('Location: /propiedades?resultado=2');
+                    header('Location: /propiedades/admin?resultado=2');
                 }
             }
         }
@@ -132,7 +132,7 @@ class PropiedadController
                     $resultado = $propiedad->eliminar();
 
                     if ($resultado) {
-                        header('Location: /propiedades?resultado=3');
+                        header('Location: /propiedades/admin?resultado=3');
                     }
                 }
             }

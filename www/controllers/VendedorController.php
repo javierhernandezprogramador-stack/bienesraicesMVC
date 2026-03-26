@@ -60,7 +60,7 @@ class VendedorController
                 $resultado = $vendedor->guardar();
 
                 if ($resultado) {
-                    header('Location: /vendedores?resultado=1');
+                    header('Location: /vendedores/admin?resultado=1');
                 }
             } else {
                 $vendedor->imagen = '';
@@ -75,7 +75,7 @@ class VendedorController
 
     public static function actualizar(Router $router)
     {
-        $id = validarORedireccionar('/vendedores');
+        $id = validarORedireccionar('/vendedores/admin');
         $vendedor = Vendedor::find($id);
         $errores = Vendedor::getErrores();
 
@@ -105,7 +105,7 @@ class VendedorController
                 $resultado = $vendedor->guardar();
 
                 if ($resultado) {
-                    header('Location: /vendedores?resultado=2');
+                    header('Location: /vendedores/admin?resultado=2');
                 }
             }
         }
@@ -132,9 +132,9 @@ class VendedorController
                     $resultado =  $vendedor->eliminar();
 
                     if ($resultado) {
-                        header('Location: /vendedores?resultado=3');
+                        header('Location: /vendedores/admin?resultado=3');
                     } else {
-                        header('Location: /vendedores?resultado=4');
+                        header('Location: /vendedores/admin?resultado=4');
                     }
                 }
             }
