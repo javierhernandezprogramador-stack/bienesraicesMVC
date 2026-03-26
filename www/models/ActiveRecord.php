@@ -25,7 +25,7 @@ class ActiveRecord
     public function guardar()
     {
         if (isset($this->id)) { //si existe un id es porque estamos actualizando
-            return $this->actualizar();
+            $this->actualizar();
         } else {
             $this->crear();
         }

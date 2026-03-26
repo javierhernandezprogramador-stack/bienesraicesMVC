@@ -67,8 +67,63 @@ class PropiedadController
         ]);
     }
 
-    public static function actualizar()
+    public static function actualizar(Router $router)
     {
-        echo "Propiedad actualizar";
+        $id = validarORedireccionar('/admin');
+
+        $propiedad = Propiedad::find($id);
+        $errores = Propiedad::getErrores();
+        $vendedores = Vendedor::all();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //asignar los atributos
+            $args = $_POST['propiedad'];
+
+            $propiedad->sincronizar($args);
+
+            //Validacion
+            $errores = $propiedad->validar();
+
+            //Generar nombre único
+            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+            //Subida de archivos
+            if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                $manager = new ImageManager(Driver::class);
+                $imagen = $manager->read($_FILES['propiedad']['tmp_name']['imagen']);
+                $imagen->cover(800, 600);
+                $propiedad->setImagen($nombreImagen);
+                $imagen->save(CARPETA_IMAGENES . $nombreImagen);
+            }
+
+            //Revisar que el arreglo de errores este vacio
+            if (empty($errores)) {
+                $propiedad->guardar();
+            }
+        }
+
+        $router->render('propiedades/actualizar', [
+            'propiedad' => $propiedad,
+            'vendedores' => $vendedores,
+            'errores' => $errores
+        ]);
+    }
+
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+
+                $tipo = $_POST['tipo'];
+
+                if (validarTipoContenido($tipo)) {
+                    $propiedad = Propiedad::find($id);
+                    $propiedad->eliminar();
+                }
+            }
+        }
     }
 }

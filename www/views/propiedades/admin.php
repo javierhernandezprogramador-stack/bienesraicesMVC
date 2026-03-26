@@ -35,15 +35,15 @@
                     <td><img src="/public/imagenes/<?php echo $propiedad->imagen; ?>" alt="Imagen tabla" class="imagen-tabla"></td>
                     <td>$ <?php echo $propiedad->precio; ?></td>
                     <td>
-                        <form method="POST" class="w-100">
+                        <form method="POST" class="w-100" action="propiedades/eliminar">
                             <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
                             <input type="hidden" name="tipo" value="propiedad">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
-                        <form action="propiedades/actualizar" method="POST" class="w-100">
-                            <input type="hidden" value="<?php echo $propiedad->id; ?>" name="id">
-                            <input type="submit" class="boton-amarillo-block w-100" value="Actualizar">
-                        </form>
+
+                        <a href="propiedades/actualizar?id=<?php echo $propiedad->id; ?>" class="boton-amarillo-block">
+                            Actualizar
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
