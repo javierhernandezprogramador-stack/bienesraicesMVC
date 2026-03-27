@@ -39,7 +39,7 @@ services:
       - ./www:/var/www/html
     ports:
       - "3001:3000"
-    command: bash
+    command: npm run dev
 
 volumes:
   db_data:

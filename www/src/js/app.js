@@ -37,19 +37,39 @@ function eventListener() {
     const mobileMenu = document.querySelector('.mobile-menu');
 
     mobileMenu.addEventListener('click', navegacionResponsive);
+
+    //muestra campos condicionales
+    const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
+
+    console.log(metodoContacto);
+
+    metodoContacto.forEach(input => input.addEventListener('click', mostrarMetodosContacto));
 }
 
 function navegacionResponsive() {
     const navegacion = document.querySelector('.navegacion');
 
     navegacion.classList.toggle('mostrar');
+}
 
+function mostrarMetodosContacto(e) {
+    let contactoDiv = document.querySelector('#contacto');
 
-    /*if(navegacion.classList.contains('mostrar')) { 
-        navegacion.classList.remove('mostrar');
-    }else {
-        navegacion.classList.add('mostrar');
-    }*/
+    if (e.target.value === 'telefono') {
+        contactoDiv.innerHTML = `
+            <input type="tel" placeholder="Tu Teléfono" id="telefono" name="contacto[telefono]">
 
-    //Los que esta arriba es equivalente a esto -> navegacion.classList.toggle('mostrar')
+            <p>Elija la fecha y la hora para la llamada</p>
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="contacto[fecha]">
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" min="09:00" max="18:00" name="contacto[hora]">
+        `;
+    } else {
+        contactoDiv.innerHTML = `
+            <input type="email" placeholder="Tu Email" id="email" name="contacto[email]" required>
+        `;
+    }
 }
