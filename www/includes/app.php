@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require 'funciones.php';
 require 'config/database.php';

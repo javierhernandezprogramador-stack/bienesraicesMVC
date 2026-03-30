@@ -1,8 +1,4 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
 $auth = $_SESSION['login'] ?? null;
 
 if (!isset($inicio)) {
@@ -60,7 +56,7 @@ if (!isset($inicio)) {
 
             <nav class="navegacion">
                 <a href="/nosotros">Nosotros</a>
-                <a href="/anuncios">Anuncios</a>
+                <a href="/propiedades">Anuncios</a>
                 <a href="/blog">Blog</a>
                 <a href="/contacto">Contacto</a>
             </nav>
