@@ -6,7 +6,7 @@ class Admin extends ActiveRecord
 {
 
     //Bases de datos
-    protected static $tabla = 'admin';
+    protected static $tabla = 'usuarios';
     protected static $columnaDB = ['id', 'email', 'password'];
 
     public $id;
@@ -31,5 +31,42 @@ class Admin extends ActiveRecord
         }
 
         return self::$errores;
+    }
+
+    public function existeUsuario()
+    {
+        //Revisar si un usuario existe o no
+        $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if (!$resultado->num_rows) {
+            self::$errores[] = 'El usuario no existe';
+            return;
+        }
+
+        return $resultado;
+    }
+
+    public function comprobarPassword($resultado)
+    {
+        $usuario = $resultado->fetch_object();
+
+        $autenticado = password_verify($this->password, $usuario->password);
+
+        if (!$autenticado) {
+            self::$errores[] = 'El password es incorrecto';
+        }
+
+        return $autenticado;
+    }
+
+    public function autenticar()
+    {
+        session_start();
+
+        $_SESSION['usuario'] = $this->email;
+        $_SESSION['login'] = true;
+        header("Location: /propiedades/admin");
     }
 }

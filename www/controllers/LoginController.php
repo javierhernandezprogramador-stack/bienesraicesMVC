@@ -20,10 +20,21 @@ class LoginController
 
             if (empty($errores)) {
                 //verificar si el usuario exite
+                $resultado = $auth->existeUsuario();
 
-                //verificar el password
+                if (!$resultado) {
+                    $errores = Admin::getErrores();
+                } else {
+                    //verificar el password
+                    $autenticado = $auth->comprobarPassword($resultado);
 
-                //autenticar el usuario
+                    if ($autenticado) {
+                        //autenticar el usuario
+                        $auth->autenticar();
+                    } else {
+                        $errores = Admin::getErrores();
+                    }
+                }
             }
         }
 
@@ -34,6 +45,10 @@ class LoginController
 
     public static function logout()
     {
-        echo "Desde logout";
+        session_start();
+
+        $_SESSION = [];
+
+        header("Location: /");
     }
 }
