@@ -28,6 +28,7 @@ function darkMode() {
     const botonDarkMode = document.querySelector('.dark-mode-boton');
 
     botonDarkMode.addEventListener('click', () => {
+        console.log("Presionaste boton para cambiar temas");
         document.body.classList.toggle('dark-mode');
     });
 }
