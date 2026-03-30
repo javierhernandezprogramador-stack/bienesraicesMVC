@@ -28,6 +28,7 @@ services:
       - "3306:3306"
     volumes:
       - .www:/var/lib/mysql
+      - ./www/schema:/docker-entrypoint-initdb.d
     networks:
       - app-networkphp
   
