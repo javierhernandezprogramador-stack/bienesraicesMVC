@@ -11,7 +11,7 @@
  Target Server Version : 100625 (10.6.25-MariaDB-ubu2204)
  File Encoding         : 65001
 
- Date: 30/03/2026 13:16:24
+ Date: 10/04/2026 15:17:13
 */
 
 SET NAMES utf8mb4;
@@ -45,6 +45,23 @@ INSERT INTO `propiedades` VALUES (28, ' Casa en el bosque', 900000.00, '9055ce67
 INSERT INTO `propiedades` VALUES (29, ' Casa en la ciudad', 2000000.00, '82ae4b3ddd7de3e46b81d6dd283ed287.jpg', 'Casa en la ciudad con buen ambiente y accesibilidad a muchos lugares con vista a parque recreativo en lugar muy accesible', 8, 7, 5, '2024-10-12', 13);
 
 -- ----------------------------
+-- Table structure for roles
+-- ----------------------------
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of roles
+-- ----------------------------
+INSERT INTO `roles` VALUES (1, 'Administrador');
+INSERT INTO `roles` VALUES (2, 'Cliente');
+INSERT INTO `roles` VALUES (3, 'Asesor');
+
+-- ----------------------------
 -- Table structure for usuarios
 -- ----------------------------
 DROP TABLE IF EXISTS `usuarios`;
@@ -52,13 +69,15 @@ CREATE TABLE `usuarios`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `password` char(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `rolId` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_usuarios_roles`(`rolId` ASC) USING BTREE,
+  CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`rolId`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES (3, 'correo@correo.com', '$2y$10$K253Ix0jZP5CeDaRn8.pc.md9Iktk3OtBYDHC/kfsuueqLw25zwX2');
 
 -- ----------------------------
 -- Table structure for vendedores

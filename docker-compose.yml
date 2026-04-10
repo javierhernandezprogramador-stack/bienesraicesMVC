@@ -4,6 +4,8 @@ services:
 
   web:
     build: ./apache
+    env_file:
+      - .env
     container_name: bienesraices
     ports:
       - "8080:80"
@@ -19,10 +21,10 @@ services:
     container_name: bienesraices_mvc
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: Eduardo.@
-      MARIADB_DATABASE: bienesraices
-      MARIADB_USER: Eduardo.@
-      MARIADB_PASSWORD: 1088514H@z
+      MARIADB_ROOT_PASSWORD: ${DB_PASS_ROOT}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASS}
 
     ports:
       - "3306:3306"

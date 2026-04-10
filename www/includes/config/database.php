@@ -2,10 +2,10 @@
 
 function conecterDB(): mysqli
 { //le decimos que retornara una instancia de mysqli
-    $hostName =  'bienesraices_mvc';
-    $usuario = 'Eduardo.@';
-    $password = '1088514H@z';
-    $dbName = 'bienesraices';
+    $hostName =  getenv('DB_HOST');
+    $usuario = getenv('DB_USER');
+    $password = getenv('DB_PASS');
+    $dbName = getenv('DB_NAME');
 
     $db = new mysqli($hostName, $usuario, $password, $dbName);
 
