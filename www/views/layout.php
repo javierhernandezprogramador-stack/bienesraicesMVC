@@ -63,7 +63,7 @@ if (!isset($inicio)) {
 
         </div>
 
-        <p class="copyright">Todos los derechos Reservados <?php echo date('Y'); ?> &copy;</p>
+        <p class="copyright">Todos los derechos Reservados Jadez <?php echo date('Y'); ?> &copy;</p>
     </footer>
 
     <script src="/build/js/bundle.min.js"></script>

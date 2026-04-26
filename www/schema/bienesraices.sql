@@ -11,7 +11,7 @@
  Target Server Version : 100625 (10.6.25-MariaDB-ubu2204)
  File Encoding         : 65001
 
- Date: 10/04/2026 15:17:13
+ Date: 26/04/2026 11:21:43
 */
 
 SET NAMES utf8mb4;
@@ -43,23 +43,6 @@ CREATE TABLE `propiedades`  (
 INSERT INTO `propiedades` VALUES (27, ' Casa en la alberca', 4500000.00, '3397b2a0f847c1aa05a4fdef2a5d7bc4.jpg', 'Casa en la alberca con bonita vista al lago para que la pases bien con tu familia y amigos, no te pierdas esta hermosa casa', 5, 5, 3, '2024-10-12', 12);
 INSERT INTO `propiedades` VALUES (28, ' Casa en el bosque', 900000.00, '9055ce672e598f97e317ff333d2922e8.jpg', 'Hermosa casa en el bosque con multiples campos, para mayor informaci├│n le pedimos que se contacte con nostros', 7, 8, 5, '2024-10-12', 10);
 INSERT INTO `propiedades` VALUES (29, ' Casa en la ciudad', 2000000.00, '82ae4b3ddd7de3e46b81d6dd283ed287.jpg', 'Casa en la ciudad con buen ambiente y accesibilidad a muchos lugares con vista a parque recreativo en lugar muy accesible', 8, 7, 5, '2024-10-12', 13);
-
--- ----------------------------
--- Table structure for roles
--- ----------------------------
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE `roles`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of roles
--- ----------------------------
-INSERT INTO `roles` VALUES (1, 'Administrador');
-INSERT INTO `roles` VALUES (2, 'Cliente');
-INSERT INTO `roles` VALUES (3, 'Asesor');
 
 -- ----------------------------
 -- Table structure for usuarios
