@@ -11,7 +11,7 @@
  Target Server Version : 100625 (10.6.25-MariaDB-ubu2204)
  File Encoding         : 65001
 
- Date: 26/04/2026 11:21:43
+ Date: 26/04/2026 11:35:59
 */
 
 SET NAMES utf8mb4;
@@ -52,15 +52,13 @@ CREATE TABLE `usuarios`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `password` char(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
-  `rolId` int NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_usuarios_roles`(`rolId` ASC) USING BTREE,
-  CONSTRAINT `fk_usuarios_roles` FOREIGN KEY (`rolId`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
+INSERT INTO `usuarios` VALUES (4, 'correo@correo.com', '$2y$10$YltYvYfFxaALj6rN3GolF.G6Nu.WgdSEgWFNe9L9nj6Vwo0.xszOa');
 
 -- ----------------------------
 -- Table structure for vendedores
